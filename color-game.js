@@ -1,13 +1,20 @@
+var body = document.querySelector("body");
+var h1 = document.querySelector("h1");
 var squares = document.querySelectorAll(".square");
-var colors = generateRandomColors(6);
+var numOfSquares = 6;
+var colors = generateRandomColors(numOfSquares);
 var pickedColorDisplay = document.querySelector("#colorDisplay");
 var rightOrWrongDisplay = document.querySelector("#rightOrWrong");
-var body = document.querySelector("body");
 var pickedColor = pickColor();
+var resetButton = document.querySelector("#reset");
+var easyButton = document.querySelector("#easyBtn");
+var hardButton = document.querySelector("#hardBtn");
+
+pickedColorDisplay.textContent = pickedColor;
 
 function changeColors(color) {
   for(var i = 0; i < colors.length; i++) {
-    squares[i].style.background = color;
+    squares[i].style.backgroundColor = color;
   }
 }
 
@@ -16,6 +23,7 @@ function pickColor() {
   return colors[random];
 }
 
+//but I need to make sure all colors numbers are unique
 function generateRandomColors(num) {
   // make an array
   var arr = []
@@ -38,9 +46,6 @@ function randomColor() {
   return "rgb(" + r +", " + g + ", " + b + ")";
 }
 
-
-pickedColorDisplay.textContent = pickedColor;
-
 for(var i = 0; i < squares.length; i++) {
   //grab color of picked square
   squares[i].style.backgroundColor = colors[i];
@@ -49,9 +54,71 @@ for(var i = 0; i < squares.length; i++) {
     if(clickedColor === pickedColor) {
       rightOrWrongDisplay.textContent = "Good job!";
       changeColors(clickedColor);
+      h1.style.backgroundColor = clickedColor;
+      h1.style.color = "white";
+      resetButton.textContent = "Play again?";
     } else {
       rightOrWrongDisplay.textContent = "Try again, loser";
       this.style.backgroundColor = "white";
     }
   });
 }
+
+resetButton.addEventListener("click", function() {
+  //generate all new random colors
+  colors = generateRandomColors(numOfSquares);
+  //pick a new random color from array as the winning color (aka picked color)
+  pickedColor = pickColor();
+  //change color display in header to match the picked color
+  pickedColorDisplay.textContent = pickedColor;
+  //change colors of squares
+  for(var i = 0; i < colors.length; i++) {
+    squares[i].style.backgroundColor = colors[i];
+  }
+  //change button text to say reset colorDisplay
+  resetButton.textContent = "Switch up colors";
+  //change background color back to regular
+  h1.style.backgroundColor = "white";
+  h1.style.color = "black";
+  rightOrWrongDisplay.textContent = "";
+});
+
+easyButton.addEventListener("click", function() {
+  h1.style.backgroundColor = "white";
+  h1.style.color = "black";
+  rightOrWrongDisplay.textContent = "";
+  //change button style to show which is selected
+  easyBtn.classList.add("selected");
+  hardBtn.classList.remove("selected");
+  //change color array to 3 values
+  numOfSquares = 3;
+  colors = generateRandomColors(numOfSquares);
+  //generate new picked color
+  pickedColor = pickColor();
+  //change color display in header to match the picked color
+  pickedColorDisplay.textContent = pickedColor;
+  //hide last 3 squares divs as well as assign new background colors for first 3
+  for(var i = 0; i < squares.length; i++) {
+    if(colors[i]) {
+      squares[i].style.backgroundColor = colors[i];
+    } else {
+      squares[i].style.display = "none";
+    }
+  }
+});
+
+hardButton.addEventListener("click", function () {
+  h1.style.backgroundColor = "white";
+  h1.style.color = "black";
+  rightOrWrongDisplay.textContent = "";
+  easyBtn.classList.remove("selected");
+  hardBtn.classList.add("selected");
+  numOfSquares = 6;
+  colors = generateRandomColors(numOfSquares);
+  pickedColor = pickColor();
+  pickedColorDisplay.textContent = pickedColor;
+  for(var i = 0; i < colors.length; i++) {
+    squares[i].style.backgroundColor = colors[i];
+    squares[i].style.display = "block";
+  }
+});

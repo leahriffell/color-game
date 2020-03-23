@@ -7,13 +7,17 @@
     <link href="https://fonts.googleapis.com/css?family=Sen:400,700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>The Great <br><span id=colorDisplay>xyz</span><br> Color Game</h1>
+    <div id="header">
+      <h1>The Great Color Game</h1>
+      <h2>Guess the square below that corresponds with</h2>
+      <h2 id=colorDisplay>xyz</h2>
+    </div>
 
     <div id ="divider">
       <button id="reset">Switch up colors</button>
       <span id="rightOrWrong"></span>
-      <button id="easyBtn">Easy</button>
-      <button id="hardBtn" class="selected">Hard</button>
+      <button class="mode">Easy</button>
+      <button class="mode" class="selected">Hard</button>
     </div>
 
     <div id ="squareContainer">

@@ -1,13 +1,40 @@
 :root {
   --color__primary: #0000FF;
-  --color__secondary: #9d9dff;
-  --color__tertiary:
+  --color__secondary: #62B1F6;
+  --color__charcoal: #2B2D2F;
 }
 
 body {
   font-family: 'Sen', sans-serif;
   font-weight: normal;
   margin: 0;
+}
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 20px 0 15px 0;
+  font-size: 2.5rem;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 0;
+  font-weight: 400;
+}
+
+#header {
+  color: var(--color__charcoal);
+}
+
+#colorDisplay {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  line-height: 2;
+  padding: 0 0 10px 0;
 }
 
 button {
@@ -36,16 +63,8 @@ button:hover {
   background-color: var(--color__secondary);
 }
 
-h1 {
-  text-align: center;
-  text-transform: uppercase;
-  margin: 0;
-  padding: 20px 0 20px 0;
-  line-height: 1.3;
-  font-size: 2.3em;
-}
-
 #squareContainer {
+  padding: 10px 0 0 0;
   max-width: 600px;
   margin: auto;
 }
